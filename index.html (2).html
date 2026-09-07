@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brother's Plumbing — Verified, Fast-Responding Plumbers in Miami</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181C;
+    --ink-soft:#5B6570;
+    --charcoal:#1E252B;
+    --amber:#F2A93B;
+    --amber-dark:#D68F22;
+    --teal:#0F6B5C;
+    --teal-soft:#E6F0EE;
+    --paper:#F5F6F4;
+    --white:#FFFFFF;
+    --line: rgba(20,24,28,0.12);
+    --line-on-dark: rgba(255,255,255,0.14);
+    --radius: 4px;
+    --maxw: 1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.15;
+    margin:0;
+  }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; }
+  :focus-visible{ outline:2px solid var(--amber-dark); outline-offset:3px; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--maxw); margin:0 auto;
+  }
+  .logo{
+    font-family:'Sora',sans-serif; font-weight:800; font-size:1.25rem; color:var(--ink);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ color:var(--amber-dark); }
+  nav.primary-nav{ display:flex; align-items:center; gap:34px; }
+  nav.primary-nav a{
+    font-size:0.93rem; font-weight:500; color:var(--ink-soft);
+    padding:6px 0; border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.primary-nav a:hover{ color:var(--ink); border-color:var(--amber-dark); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:var(--radius);
+    font-size:0.92rem; font-weight:600; border:1px solid transparent; cursor:pointer;
+    transition:transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-amber{ background:var(--amber); color:var(--ink); }
+  .btn-amber:hover{ background:var(--amber-dark); }
+  .btn-outline-ink{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-outline-ink:hover{ background:var(--ink); color:var(--white); }
+  .btn-outline-white{ background:transparent; color:var(--white); border-color:var(--line-on-dark); }
+  .btn-outline-white:hover{ border-color:var(--white); }
+
+  .mobile-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .mobile-toggle svg{ width:26px; height:26px; }
+
+  /* Hero */
+  .hero{ background:var(--paper); padding:96px 0 84px; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:start; }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px; color:var(--teal);
+    font-size:0.86rem; font-weight:600; margin-bottom:20px;
+  }
+  .eyebrow-line svg{ width:16px; height:16px; }
+  .hero h1{ font-size:clamp(2.2rem,4vw,3.2rem); max-width:14ch; }
+  .hero-sub{ margin-top:22px; font-size:1.1rem; color:var(--ink-soft); max-width:46ch; }
+  .hero-actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* Quote card */
+  .quote-card{
+    background:var(--white); border:1px solid var(--line);
+    border-radius:10px; padding:28px 28px 26px; box-shadow:0 24px 48px rgba(20,24,28,0.06);
+  }
+  .quote-card .qc-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; }
+  .qc-label{ font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-soft); font-weight:600; }
+  .verified-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--teal-soft); color:var(--teal); font-size:0.76rem; font-weight:600;
+    padding:5px 10px; border-radius:20px;
+  }
+  .verified-pill svg{ width:12px; height:12px; }
+  .qc-rating{ display:flex; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .qc-rating .num{ font-family:'Sora',sans-serif; font-size:2.4rem; font-weight:700; }
+  .qc-rating .stars{ color:var(--amber-dark); font-size:1.05rem; letter-spacing:2px; }
+  .qc-rating .count{ color:var(--ink-soft); font-size:0.88rem; }
+  .qc-reply{
+    display:flex; align-items:center; gap:8px; margin-top:14px; margin-bottom:20px;
+    font-size:0.9rem; color:var(--ink-soft);
+  }
+  .qc-reply svg{ width:16px; height:16px; color:var(--teal); flex:none; }
+  .qc-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .badge{
+    font-size:0.78rem; font-weight:600; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line);
+    padding:6px 11px; border-radius:20px;
+  }
+  .qc-cta{ display:block; text-align:center; }
+
+  /* Trust strip */
+  .trust{ padding:50px 0; }
+  .trust-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .trust-item{
+    border:1px solid var(--line); border-radius:8px; padding:22px 18px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .trust-item .ic{
+    width:36px; height:36px; border-radius:50%;
+    background:var(--teal-soft); color:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .trust-item .ic svg{ width:18px; height:18px; }
+  .trust-item .t{ font-weight:700; font-size:1rem; }
+  .trust-item .d{ font-size:0.86rem; color:var(--ink-soft); }
+
+  /* Sections */
+  section{ padding:96px 0; }
+  .section-head{ max-width:60ch; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.15rem); }
+  .section-head p{ margin-top:16px; color:var(--ink-soft); font-size:1.02rem; }
+
+  /* Services grid */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+  .service-tile{ background:var(--white); padding:32px 28px; }
+  .service-tile .top-bar{ width:32px; height:3px; background:var(--amber); margin-bottom:18px; }
+  .service-tile h3{ font-size:1.08rem; font-weight:700; }
+  .service-tile p{ margin-top:8px; font-size:0.92rem; color:var(--ink-soft); }
+
+  /* Why */
+  .why{ background:var(--charcoal); color:var(--white); }
+  .why .section-head h2{ color:var(--white); max-width:16ch; }
+  .why .section-head p{ color:rgba(255,255,255,0.62); }
+  .why-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:2px; }
+  .why-item{ padding:26px 8px 26px 0; display:flex; gap:16px; }
+  .why-item .bullet{ width:8px; height:8px; border-radius:50%; background:var(--amber); margin-top:9px; flex:none; }
+  .why-item h3{ color:var(--white); font-size:1.02rem; font-weight:600; }
+  .why-item p{ margin-top:5px; font-size:0.92rem; color:rgba(255,255,255,0.6); }
+
+  /* Testimonials */
+  .testimonials{ background:var(--paper); }
+  .quote-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .t-card{ background:var(--white); border:1px solid var(--line); border-radius:8px; padding:28px; }
+  .t-card .stars-row{ color:var(--amber-dark); font-size:0.95rem; letter-spacing:2px; margin-bottom:14px; }
+  .t-card p.body{ font-size:1rem; color:var(--ink); }
+  .t-card .attrib{ margin-top:18px; font-size:0.85rem; color:var(--ink-soft); }
+
+  /* CTA banner */
+  .cta-banner{ padding:80px 0; }
+  .cta-inner{
+    background:var(--ink); color:var(--white); border-radius:14px;
+    padding:56px 48px; display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .cta-inner h2{ color:var(--white); font-size:clamp(1.5rem,3vw,2rem); max-width:18ch; }
+  .cta-inner p{ margin-top:10px; color:rgba(255,255,255,0.6); max-width:36ch; }
+  .cta-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* Footer */
+  footer{ padding:56px 0 32px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid var(--line); }
+  .footer-logo{ font-family:'Sora',sans-serif; font-weight:800; font-size:1.15rem; }
+  .footer-grid > div p{ margin-top:14px; font-size:0.9rem; color:var(--ink-soft); max-width:30ch; }
+  .footer-col h4{ font-size:0.82rem; font-weight:700; margin-bottom:14px; color:var(--ink); }
+  .footer-col p{ display:block; font-size:0.9rem; margin-bottom:9px; color:var(--ink-soft); }
+  .footer-bottom{ display:flex; justify-content:space-between; padding-top:24px; font-size:0.8rem; color:var(--ink-soft); flex-wrap:wrap; gap:10px; }
+
+  @media (max-width:900px){
+    nav.primary-nav{ display:none; }
+    .mobile-toggle{ display:block; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .trust-row{ grid-template-columns:repeat(2,1fr); }
+    .services-grid{ grid-template-columns:repeat(2,1fr); }
+    .why-grid{ grid-template-columns:1fr; }
+    .quote-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .wrap,.header-row{ padding-left:20px; padding-right:20px; }
+    section{ padding:64px 0; }
+    .hero{ padding:64px 0 52px; }
+    .services-grid{ grid-template-columns:1fr; }
+    .cta-inner{ padding:36px 26px; }
+    .footer-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <a href="#top" class="logo">Brother's<span class="dot">.</span>Plumbing</a>
+    <nav class="primary-nav">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Get a quote</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <a href="tel:+18668902349" class="btn btn-amber">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1-5-3-6-6l2-2-3-6-4 3z"/></svg>
+        (866) 890-2349
+      </a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#14181C" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          Verified by Google · Locally & minority-owned
+        </div>
+        <h1>Miami plumbers who answer, show up, and stand behind the price.</h1>
+        <p class="hero-sub">Brother's Plumbing has spent 2+ years building a 5.0 rating on fast, honest work — free in-home estimates, a price-match guarantee, and a team that typically replies within the hour.</p>
+        <div class="hero-actions">
+          <a href="tel:+18668902349" class="btn btn-amber">Call (866) 890-2349</a>
+          <a href="#contact" class="btn btn-outline-ink">Get a free estimate</a>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="qc-top">
+          <span class="qc-label">FREE IN-HOME ESTIMATE</span>
+          <span class="verified-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+            Verified
+          </span>
+        </div>
+        <div class="qc-rating">
+          <span class="num">5.0</span>
+          <span class="stars">★★★★★</span>
+        </div>
+        <div class="qc-rating" style="margin-bottom:0;">
+          <span class="count">from 63 Google reviews</span>
+        </div>
+        <div class="qc-reply">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Typically replies in about 1 hour
+        </div>
+        <div class="qc-badges">
+          <span class="badge">Locally-owned</span>
+          <span class="badge">Minority-owned</span>
+          <span class="badge">Price match</span>
+          <span class="badge">24/7 emergency</span>
+        </div>
+        <a href="#contact" class="btn btn-amber qc-cta">Get your free quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="wrap trust-row">
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="t">Open 24 hours</div>
+        <div class="d">Emergency dispatch, day or night.</div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7l8-4z"/></svg></div>
+        <div class="t">Free estimates</div>
+        <div class="d">In-home quotes, no obligation.</div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+        <div class="t">Price match guarantee</div>
+        <div class="d">We'll beat or match a written quote.</div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6"/></svg></div>
+        <div class="t">2+ years in Miami</div>
+        <div class="d">Locally-owned, family-run.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>One call for anything below the fixture</h2>
+        <p>From a slow drain to a full water heater swap, we quote it clearly and fix it the same visit whenever we can.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Leak detection & repair</h3>
+          <p>We find the source first, so you're not paying to fix the wrong pipe.</p>
+        </div>
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Faucet install & repair</h3>
+          <p>Kitchen and bath faucets, replaced or repaired in a single visit.</p>
+        </div>
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Garbage disposal service</h3>
+          <p>Installs, jams, and replacements for any make or model.</p>
+        </div>
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Water heater install & repair</h3>
+          <p>Standard and tankless units, sized to your unit or building.</p>
+        </div>
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Pipe & sewer repair</h3>
+          <p>From a pinhole leak to a full sewer line issue, diagnosed clearly.</p>
+        </div>
+        <div class="service-tile">
+          <div class="top-bar"></div>
+          <h3>Drain unclogging</h3>
+          <p>Toilets, showers, and kitchen drains cleared without guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="why">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why property managers and hosts call us back</h2>
+        <p>Built on the same things that got us to a 5.0 rating from homeowners, landlords, and short-term rental hosts across Miami.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="bullet"></div>
+          <div>
+            <h3>First to call, first to answer</h3>
+            <p>We typically reply within an hour — important when a unit is down and a guest or tenant is waiting.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="bullet"></div>
+          <div>
+            <h3>Price match guarantee</h3>
+            <p>Get a written quote elsewhere and we'll beat or match it before you book the job.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="bullet"></div>
+          <div>
+            <h3>Verified and accountable</h3>
+            <p>Google-verified business profile with a public track record you can check before you call.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="bullet"></div>
+          <div>
+            <h3>Locally & minority-owned</h3>
+            <p>A Miami-based, family-run business that's been on the ground here for 2+ years.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" class="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What clients say afterward</h2>
+        <p>A sample of the 63+ Google reviews behind our 5.0 rating.</p>
+      </div>
+      <div class="quote-grid">
+        <div class="t-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="body">They were the first company to call us back, gave us a fair price, and showed up exactly when they said they would.</p>
+          <div class="attrib">Google review · Homeowner</div>
+        </div>
+        <div class="t-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="body">Our Airbnb had a toilet issue that needed fixing immediately for an incoming guest — they got someone out right away.</p>
+          <div class="attrib">Google review · Short-term rental host</div>
+        </div>
+        <div class="t-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="body">Excellent, professional service — straightforward about what needed to be done and got it handled quickly.</p>
+          <div class="attrib">Google review · Homeowner</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" id="contact">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div>
+          <h2>Get a free, no-obligation estimate today.</h2>
+          <p>Call now or request a quote — we typically reply within the hour.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="tel:+18668902349" class="btn btn-amber">Call (866) 890-2349</a>
+          <a href="#top" class="btn btn-outline-white">Request a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Brother's Plumbing</div>
+        <p>Locally & minority-owned plumbing serving Miami and nearby areas, with free estimates and 24/7 emergency service.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <p><a href="#services">Services</a></p>
+        <p><a href="#why">Why us</a></p>
+        <p><a href="#reviews">Reviews</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>(866) 890-2349</p>
+        <p>Serves Miami and nearby areas</p>
+        <p>Open 24 hours</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Brother's Plumbing. All rights reserved.</span>
+      <span>Verified by Google</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.mobile-toggle').addEventListener('click', function(){
+    var nav = document.querySelector('.primary-nav');
+    var visible = nav.style.display === 'flex';
+    nav.style.display = visible ? 'none' : 'flex';
+    nav.style.flexDirection = 'column';
+    nav.style.position = 'absolute';
+    nav.style.top = '64px';
+    nav.style.right = '20px';
+    nav.style.background = '#fff';
+    nav.style.padding = '18px 24px';
+    nav.style.borderRadius = '4px';
+    nav.style.boxShadow = '0 8px 24px rgba(20,24,28,0.14)';
+    nav.style.gap = '16px';
+  });
+</script>
+
+</body>
+</html>
